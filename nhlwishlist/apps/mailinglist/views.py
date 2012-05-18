@@ -1,4 +1,5 @@
 # Create your views here.
+from datetime import datetime
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
@@ -16,7 +17,7 @@ def subscribe(request):
         
         if subscriber_email:
             
-            subscriber = Subscriber(subscriber_email_address=subscriber_email)
+            subscriber = Subscriber(subscriber_email_address=subscriber_email, date_subscribed=datetime.utcnow())
             subscriber.save()
             
             return render_to_response('mailinglist/index.html', {'success_message': "Thanks! We promise not to spam you and will let you know when we launch!"}, context_instance=RequestContext(request))
