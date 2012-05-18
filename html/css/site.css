@@ -1,0 +1,17 @@
+@charset "utf-8";
+body {
+	background-color: #FFF;
+	background-image: url(../images/header_bg.png);
+	background-repeat: repeat-x;
+	background-position: 0px 0px;
+}
+#main_site {
+	background-image: url(../images/main_content_bg.png);
+	background-repeat: no-repeat;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	width: 860px;
+	height: 700px;
+	margin-top: 150px;
+}
