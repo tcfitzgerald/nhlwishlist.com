@@ -15,6 +15,11 @@ def subscribe(request):
         
         subscriber_email = request.POST['email']
         
+        duplicate = Subscriber.objects.filter(subscriber_email_address=subscriber_email)
+        
+        if duplicate:
+            return render_to_response('mailinglist/index.html', {'error_message': "You have already signed up!"}, context_instance=RequestContext(request))
+        
         if subscriber_email:
             
             subscriber = Subscriber(subscriber_email_address=subscriber_email, date_subscribed=datetime.utcnow())
