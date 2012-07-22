@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block "body" %}
+<div id="main_content">
+    <div id="main_content_header">
+            
+    <h2 style="margin-top: 38px; font-size: 130%;">Register</h2>
+           
+   </div>
+<div id="wishes-wrapper" style="width: 700px;">
+    <div id="register-form">
+
+{% if not user.is_authenticated %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<form method="post" action="{% url 'register' %}">
+{% csrf_token %}
+
+
+    <table>
+        <tr><th>{{ form.username.label_tag }}</th><td>{{ form.username }}</td></tr>
+        <tr><th>{{ form.email_address.label_tag }}</th><td>{{ form.email_address }}</td></tr>
+        <tr><th>{{ form.password.label_tag }}</th><td>{{ form.password }}</td></tr>
+        <tr><th>{{ form.password_confirmation.label_tag }}</th><td>{{ form.password_confirmation }}</td></tr>
+    </table>
+    
+    
+
+<input type="submit" value="Submit" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% endif %}
+    </div>
+</div>
+</div>
+
+{% endblock %}

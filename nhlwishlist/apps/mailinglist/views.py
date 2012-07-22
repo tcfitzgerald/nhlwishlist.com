@@ -1,4 +1,3 @@
-# Create your views here.
 from datetime import datetime
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext

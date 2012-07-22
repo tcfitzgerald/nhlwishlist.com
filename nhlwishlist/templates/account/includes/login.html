@@ -1,0 +1,14 @@
+<form method="post" action="account/login/">
+{% csrf_token %}
+
+            <span><label for="id_username">Username</label></span>
+            <input id="id_username" type="text" name="username" maxlength="55" />
+            <span><label for="id_password">Password</label></span>
+            <input id="id_password" type="password" name="password" maxlength="55" />
+           
+
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="" />
+        </form>
+
+<span class="user-menu-create-account">Not a member? Create an Account!</span>

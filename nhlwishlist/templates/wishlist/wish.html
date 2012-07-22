@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load templatefilters %}
+{% block "body" %}
+    <div id="main_content">
+    
+        <div id="main_content_header">
+            
+            <h2 style="margin-top: 38px; font-size: 130%;"><a href="{% url wish_summary wish.id %}">{{ wish.subject }}</a></h2>
+           
+        </div>
+        <div id="wishes-wrapper" style="width: 700px;">
+            
+            <div class="wish fix-wish">
+                <div class="votes-wrapper post">
+                    <div class="count">{{ wish.votes }}</div>
+                    <div class="votes">vote{{ wish.votes|pluralize }}</div>
+                    <div class="vote-button-wrapper"><span class="vote-button">{% if user.is_authenticated %}<a href="#"></a>{% endif %}</span></div>
+                    <div class="share">
+                    <span>share</span>                       
+                        <img src="/static/images/facebook_24.png" title="Share on Facebook">
+                        <img src="/static/images/twitter_24.png" title="Share on Twitter">
+                        <img src="/static/images/reddit_24.png" title="Share on Reddit">
+                        <img src="/static/images/google-plus_24.png" title="Share on Google+">
+                        
+                    </div>
+                </div>
+                <div class="wish-summary">
+                    <span class="wish-post">
+                    {{ wish.wish|bbcode }}
+                    
+                    <span class="tags" style="left: 1px !important; padding-top: 25px;">
+                    {% for tag in wish.tags.all %}
+                    <a href="#" class="wish-tag {{ tag.name }}"></a>
+                    {% endfor %}
+                    </span>
+                    </span>
+                    
+    
+                </div>
+                <div style="width: 95%">
+                    <span class="author">{{ wish.date_added|timeago }} by {{ wish.author }}</span>
+                </div>
+            
+      
+            <div id="comments">
+                {% load disqus_tags %}
+                
+                {% set_disqus_title wish.subject %}
+                
+                {% disqus_show_comments %}
+                {% set_disqus_url wish.get_absolute_url %}
+            </div>
+            
+            </div>
+
+            
+        </div> 
+    </div>
+{% endblock %}

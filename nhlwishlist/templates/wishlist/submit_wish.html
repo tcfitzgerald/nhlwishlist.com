@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+
+{% block "body" %}
+<div id="main_content">
+    <div id="main_content_header">
+            
+    <h2 style="margin-top: 38px; font-size: 130%;">Submit a Wish!</h2>
+           
+   </div>
+<div id="wishes-wrapper" style="width: 700px;">
+<div id="register-form">
+
+{% if user.is_authenticated %}
+
+{% if form.errors %}
+<p>There was a problem with your submission.</p>
+{% endif %}
+
+<form method="post" action="{% url 'submit_wish' %}">
+
+{% csrf_token %}
+
+{{ form.media }}
+    <table>
+        <tr><td>{{ form.subject.label_tag }}</td></tr>
+        <tr><td>{{ form.subject }}</td></tr>
+        <tr><td>{{ form.wish.label_tag }}</td></tr>
+        <tr><td>{{ form.wish }}</td></tr>
+        <tr><td>{{ form.tags.label_tag }}</td></tr>
+        <tr><td>
+            <div id="tag-container" name="tag-container" ></div>
+            <span class="tags-error"></span>
+        </td></tr>
+        <tr><td>
+            <div id="select-tags-list">
+                <div>
+                    
+                    <ul class="tags-ul">
+                        <li rel="2" class="wish-tag beapro"></li>
+                        <li rel="3" class="wish-tag gameplay"></li>
+                        <li rel="1" class="wish-tag beagm"></li>
+                        <li rel="6" class="wish-tag eashl"></li>
+                        <li rel="5" class="wish-tag hut"></li>
+                        <li rel="4" class="wish-tag presentation"></li>
+                    </ul>
+                </div>
+            </div>
+        </td></tr>
+        <tr><td>{{ form.tags }}</td></tr>
+        
+    </table>
+    
+    
+
+<input type="submit" value="Submit" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% endif %}
+    </div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<title>NHL Wishlist - Coming Soon!</title>
+
+<link href="/static/css/site.css" rel="stylesheet" type="text/css" media="screen" />
+
+<script src="/static/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="/static/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
+<script src="/static/js/user_functions.js" type="text/javascript"></script>
+<script src="/static/markitup/jquery.markitup.js" type="text/javascript"></script>
+<script src="/static/markitup/sets/bbcode/set.js" type="text/javascript"></script>
+<link href="/static/markitup/sets/bbcode/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/static/markitup/skins/simple/style.css" rel="stylesheet" type="text/css" media="screen" />
+
+<body>
+                
+
+<div id="header">
+<div id="top_nav">
+    <div id="nav-container">
+        <div class="nav">
+            <ul>
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Blog</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            
+            </ul>
+        </div>
+        <div id="main-sign-in">
+        <span class="gravatar"></span>
+        <span class="welcome">Welcome, {% if user.is_authenticated %}{{ user.username }}. {% else %} Guest. Sign In.{% endif %}<span class="user-menu-button"><a href="#"><img src="/static/images/sign-in.png"></a></span></span>
+        <div id="user-menu" name="user-menu">
+         {% if user.is_authenticated %}
+        <a href="/account/logout">Logout</a>
+        {% else %}
+         
+         {% include 'account/includes/login.html'%}
+         
+         {% endif %}
+        </div>
+        </div>
+    </div>
+
+</div>
+<div id="logo"><a href="{% url home %}"><img src="/static/images/logo.png"></a></div>
+
+</div>
+                
+
+<div id="container">
+
+    <div id="main_site">
+    {% load templatefilters %}
+    {% block "body" %}
+    
+    <div id="main_content">
+    <span class="getting_started">
+        <h2>What do you wish was in the game? Get started here <img src="/static/images/arrow.png"></h2>
+    
+    </span>
+        <div id="main_content_header">
+            
+            <div id="main_wishlist_tabs">
+            <a href="{% url home %}" {% if not q %}class="active"{% endif %}>Latest</a>
+            <a href="{% url home %}?q=top" {% if q == 'top' %}class="active"{% endif %}>Top</a>
+            <a href="#">Favorites</a>
+            
+            <a href="{% url submit_wish %}">Submit</a>
+            </div>
+        </div>
+        <div id="wishes-wrapper">
+            
+            {% for wish in wishes %}
+            <div class="wish {% cycle 'even' 'odd' %}">
+                <div class="votes-wrapper">
+                    <div class="count">{{ wish.votes }}</div>
+                    <div class="votes">vote{{ wish.votes|pluralize }}</div>
+                </div>
+                <div class="wish-summary">
+                    <h2><a href="{% url wish_summary wish.id %}">{{ wish.subject }}</a></h2>
+                    <span class="tags">
+                    {% for wishtag in wish.tags.all %}
+                    <a href="{% url wish-tag wishtag.name %}" class="wish-tag {{ wishtag.name }}"></a>
+                    {% endfor %}
+                    </span>
+                    
+    
+                </div>
+                <div style="clear: both;">
+                    <span class="author">{{ wish.date_added|timeago }} by {{ wish.author }}</span>
+                </div>
+            
+            </div>
+            {% endfor %}
+
+
+
+            
+        </div> 
+    </div>
+   {% endblock %}
+    
+    <div id="sidebar">
+    {% block "sidebar" %}
+        <div id="social">
+        <h2>Follow Us</h2>
+        <a href="http://twitter.com/nhlwishlist"><img src="/static/images/twitter-2.png"></a>
+        <a href="http://facebook.com/nhlwishlist"><img src="/static/images/facebook.png"></a>
+        <a href="#"><img src="/static/images/rss.png"></a>
+        </div>
+        <div id="search">
+        <input type="text" placeholder="Search">
+        <input type="image" class="search_icon" src="/static/images/search_icon.png">
+        </div>
+        <div id="ad">
+        <img src="/static/images/ad.png">
+        </div>
+        <div id="tags-list">
+            <div>
+                <h2>Tags</h2>
+                <a href="{% url wish-tag 'beapro' %}" class="wish-tag beapro"></a>
+                <a href="{% url wish-tag 'gameplay' %}" class="wish-tag gameplay"></a>
+                <a href="{% url wish-tag 'beagm' %}" class="wish-tag beagm"></a>
+                <a href="{% url wish-tag 'eashl' %}" class="wish-tag eashl"></a>
+                <a href="{% url wish-tag 'hut' %}" class="wish-tag hut"></a>
+                <a href="{% url wish-tag 'presentation' %}" class="wish-tag presentation"></a>
+            </div>
+        </div>
+        <div id="recent-comments">
+            <div>
+                
+               <div id="recentcomments" class="dsq-widget"><h2 class="dsq-widget-title">Recent Comments</h2><script type="text/javascript" src="http://nhlwishlist.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=24&excerpt_length=25"></script></div><a href="http://disqus.com/">Powered by Disqus</a>
+               
+               
+            </div>
+        </div>
+    
+   {% endblock "sidebar" %}
+    </div>
+    
+    </div>
+</div>
+                
+
+<div >
+
+<div id="footer">
+</div>
+
+</div>
+
+            
+</body>
+</html>

@@ -1,28 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<title>NHL Wishlist - Coming Soon!</title>
-<link href="/static/css/comingsoon.css" rel="stylesheet" type="text/css" media="screen" />
-<script type="text/javascript">
-
- var _gaq = _gaq || [];
- _gaq.push(['_setAccount', 'UA-32105021-1']);
- _gaq.push(['_setDomainName', 'nhlwishlist.com']);
- _gaq.push(['_trackPageview']);
-
- (function() {
-   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
- })();
-
-</script>
-</head>
-
-<body>
-<div id="content">
+{% extends "base.html" %}
+{% block body %}
 <div id="contact">
 <form action="/mailinglist/subscribe/" method="post">
 {% csrf_token %}
@@ -35,9 +12,4 @@
 {% if error_message %}<div class="error">{{ error_message }}</div>{% endif %}
 </form>
 </div>
-<div id="footer">
-<span id="ontheweb">Follow Us: <a href="http://twitter.com/nhlwishlist" target="_blank"><img src="/static/images/twitter_1.png" width="32" height="32" alt="twitter" longdesc="http://twitter.com/nhlwishlist" title="http://twitter.com/nhlwishlist"/></a></span>
-</div>
-</div>
-</body>
-</html>
+{% endblock %}

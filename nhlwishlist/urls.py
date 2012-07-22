@@ -6,8 +6,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'nhlwishlist.apps.mailinglist.views.index', name='home'),
+    url(r'^$', 'nhlwishlist.apps.wishlist.views.index', name='home'),
+    (r'^wishes/', include('nhlwishlist.apps.wishlist.urls')),
+    url(r'^tags/(?P<name>[-\w]+)/$', 'nhlwishlist.apps.wishlist.views.tags', name='wish-tag'),
     url(r'^mailinglist/subscribe', 'nhlwishlist.apps.mailinglist.views.subscribe', name='subscribe'),
+    (r'^account/', include('nhlwishlist.apps.account.urls')),
     # url(r'^nhlwishlist/', include('nhlwishlist.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
