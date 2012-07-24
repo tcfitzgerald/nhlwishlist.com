@@ -9,10 +9,9 @@
 <script src="/static/js/jquery-1.7.2.min.js" type="text/javascript"></script>
 <script src="/static/js/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
 <script src="/static/js/user_functions.js" type="text/javascript"></script>
-<script src="/static/markitup/jquery.markitup.js" type="text/javascript"></script>
-<script src="/static/markitup/sets/bbcode/set.js" type="text/javascript"></script>
-<link href="/static/markitup/sets/bbcode/style.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="/static/markitup/skins/simple/style.css" rel="stylesheet" type="text/css" media="screen" />
+{% load markitup_tags %}
+{% markitup_media 'no_jquery' %}
+</head>
 
 <body>
                 

@@ -6,11 +6,11 @@
 <div id="main_content">
     <div id="main_content_header">
             
-    <h2 style="margin-top: 38px; font-size: 130%;">Submit a Wish!</h2>
+    <h2 style="margin-top: 38px; font-size: 130%;">Submit your ideas!</h2>
            
    </div>
 <div id="wishes-wrapper" style="width: 700px;">
-<div id="register-form">
+<div id="wish-form">
 
 {% if user.is_authenticated %}
 
@@ -22,13 +22,14 @@
 
 {% csrf_token %}
 
-{{ form.media }}
     <table>
         <tr><td>{{ form.subject.label_tag }}</td></tr>
+        <tr><td style="font-size: 80%;">(A short summary of your idea! Maximum 140 characters.)</td></tr>
         <tr><td>{{ form.subject }}</td></tr>
-        <tr><td>{{ form.wish.label_tag }}</td></tr>
+        
         <tr><td>{{ form.wish }}</td></tr>
         <tr><td>{{ form.tags.label_tag }}</td></tr>
+        <tr><td style="font-size: 80%;">(Drag the tags from the list below and drop them in the outlined area. Maximum of 5 tags.)</td></tr>
         <tr><td>
             <div id="tag-container" name="tag-container" ></div>
             <span class="tags-error"></span>

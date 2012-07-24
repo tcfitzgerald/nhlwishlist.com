@@ -26,7 +26,7 @@ class Wish(models.Model):
     deleted = models.BooleanField(default=False)
     
     def __unicode__(self):
-        return self.wish
+        return self.subject
     
     class Meta:
         ordering = ["-date_added"]
@@ -35,3 +35,19 @@ class Wish(models.Model):
     @models.permalink    
     def get_absolute_url(self):
         return '/wishes/%s/' % self.id
+    
+class WishVote(models.Model):
+    wish = models.ForeignKey(Wish)
+    user = models.ForeignKey(User)
+    date_added = models.DateTimeField(default=datetime.now())
+    
+    def __unicode__(self):
+        return self.wish.subject
+    
+    def save(self, *args, **kwargs):
+        self.wish.votes = self.wish.votes + 1
+        self.wish.save()
+        
+        self.user.get_profile().vote_count -= 1
+        self.user.get_profile().save()
+        super(WishVote, self).save(*args, **kwargs)

@@ -7,6 +7,7 @@ urlpatterns = patterns('',
 
     # Wishes
     url(r'^(?P<wish_id>\d+)/$', views.summary, name='wish_summary'),
-    url(r'^submit/$', views.submit_wish, name='submit_wish')
+    url(r'^submit/$', views.submit_wish, name='submit_wish'),
+    url(r'^(?P<wish_id>\d+)/vote$', views.vote, name='vote'),
 
 )

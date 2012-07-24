@@ -73,7 +73,7 @@ $(document).ready(function() {
 				
                     $item.append( delete_icon ).appendTo( $list ).fadeIn(function() {
 			$item
-            			.animate();
+            		    .animate();
 						
                     });
 
@@ -95,18 +95,20 @@ $(document).ready(function() {
     
     $("ul.tags-ul > li").click(function(e){
 
-        e.preventDefault();    
+        var list_item = $(this);   
 
-        var parentTag = $(this).parents("div").attr('id');   
+        var parentTag = list_item.parents("div").attr('id');   
     
         if (parentTag == "tag-container"){
-            $(this).find("a.ui-icon-delete").remove();
-            $(this).appendTo( "#select-tags-list ul" );
+            list_item
+                .find("a.ui-icon-delete").remove()
+            list_item.appendTo( "#select-tags-list ul" );
             updateTagsList();
         }
         
         $(".tags-error").hide();
-
+        
+        e.preventDefault(); 
 
     });
 

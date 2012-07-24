@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^tags/(?P<name>[-\w]+)/$', 'nhlwishlist.apps.wishlist.views.tags', name='wish-tag'),
     url(r'^mailinglist/subscribe', 'nhlwishlist.apps.mailinglist.views.subscribe', name='subscribe'),
     (r'^account/', include('nhlwishlist.apps.account.urls')),
+    (r'^comments/', include('django.contrib.comments.urls')),
     # url(r'^nhlwishlist/', include('nhlwishlist.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

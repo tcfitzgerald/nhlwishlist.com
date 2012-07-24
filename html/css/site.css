@@ -625,13 +625,21 @@ color: #f5838a;
 
 }
 
+#wish-form {
+
+    margin-top: 25px;
+    font-size: 95%;
+
+}
+
+
 /** jQuery tag selector styles **/
 
 #tag-container {
 
     display: block;
     height: 40px;
-    border: 1px solid #000000;
+    border: 1px solid rgba(0, 0, 0, .35);
     padding-bottom: 15px;
     width: 80%;
 	
@@ -648,7 +656,7 @@ color: #f5838a;
 
     display: block;
     height: 45px;
-    background-color: #fefefe;
+    background-color: #f5838a;
 	
 }
 

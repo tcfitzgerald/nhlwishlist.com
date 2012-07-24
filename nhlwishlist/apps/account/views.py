@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
+from nhlwishlist.apps.account.models import UserProfile
 from nhlwishlist.apps.account.forms import LoginForm, RegisterForm
 
 
@@ -25,6 +26,8 @@ def register_user(request):
                 pass
             else:
                 user = User.objects.create_user(form.cleaned_data['username'],form.cleaned_data['email_address'], form.cleaned_data['password'])
+                profile = UserProfile(user=user)
+                profile.save()
                 
                 return redirect('home')
                 

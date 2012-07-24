@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from nhlwishlist.apps.wishlist.models import Wish, WishTag
+from nhlwishlist.apps.wishlist.models import Wish, WishTag, WishVote
 
 from nhlwishlist.apps.wishlist.forms import WishForm
 
@@ -61,4 +61,16 @@ def submit_wish(request):
         form = WishForm()
         
     return render(request, 'wishlist/submit_wish.html', {'form': form})
+    
+@login_required
+def vote(request, wish_id):
+    
+    wish = get_object_or_404(Wish, pk=wish_id)
+    
+    if request.user.get_profile().can_vote():
+    
+        vote = WishVote(user=request.user,wish=wish,date_added=datetime.now())
+        vote.save()
+        
+    return redirect('wish_summary', wish.id)
         
