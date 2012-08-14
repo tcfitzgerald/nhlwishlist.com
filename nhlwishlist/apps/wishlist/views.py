@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 
 from nhlwishlist.apps.wishlist.models import Wish, WishTag, WishVote
 
@@ -71,6 +72,12 @@ def vote(request, wish_id):
     
         vote = WishVote(user=request.user,wish=wish,date_added=datetime.now())
         vote.save()
+        
+        messages.add_message(request, messages.SUCCESS, 'Your vote has been recorded!')
+        
+    else:
+        
+        messages.add_message(request, messages.ERROR, 'You have run out of votes!')
         
     return redirect('wish_summary', wish.id)
         

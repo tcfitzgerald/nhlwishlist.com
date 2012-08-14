@@ -38,9 +38,14 @@ def register_user(request):
     return render(request, 'account/register.html', {'form': form})
     
     
-def user_login(request):   
+def user_login(request):
+    
+    next = request.GET.get('next')
+    if next == None:
+        next = 'home'
 
     if request.method == "POST":
+        
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
@@ -48,9 +53,13 @@ def user_login(request):
             # Valid user.
             if user is not None:
                 login(request, user)
+                next = request.POST["next"]
                 
-
-                return redirect('home')
+                
+                if next:
+                    return redirect(next)
+                else:
+                    return redirect('home')
 
             
             else:
@@ -59,7 +68,7 @@ def user_login(request):
     else:
         form = LoginForm()
 
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'account/login.html', {'form': form, 'next': next})
     
 def user_logout(request):
     

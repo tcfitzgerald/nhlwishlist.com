@@ -16,6 +16,18 @@
 <body>
                 
 
+<div id="message_container">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}<span class="dismiss"><a href="#" title="Dismiss Message">X</a></span></li>
+    
+   {% endfor %}
+   
+</ul>
+
+{% endif %}
+</div>
 <div id="header">
 <div id="top_nav">
     <div id="nav-container">
@@ -29,7 +41,8 @@
             </ul>
         </div>
         <div id="main-sign-in">
-        <span class="gravatar"></span>
+        {% load gravatar %}
+        <span class="gravatar">{% if user.is_authenticated %}{% gravatar user 32 %}{% else %}<img src="/static/images/gravatar.png" >{% endif %}</span>
         <span class="welcome">Welcome, {% if user.is_authenticated %}{{ user.username }}. {% else %} Guest. Sign In.{% endif %}<span class="user-menu-button"><a href="#"><img src="/static/images/sign-in.png"></a></span></span>
         <div id="user-menu" name="user-menu">
          {% if user.is_authenticated %}
@@ -44,6 +57,7 @@
     </div>
 
 </div>
+
 <div id="logo"><a href="{% url home %}"><img src="/static/images/logo.png"></a></div>
 
 </div>
@@ -53,6 +67,7 @@
 
     <div id="main_site">
     {% load templatefilters %}
+    
     {% block "body" %}
     
     <div id="main_content">

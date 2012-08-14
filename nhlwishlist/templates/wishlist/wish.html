@@ -44,9 +44,10 @@
             
       
             <div id="comments">
+                <h2>Comments</h2>
                 {% render_comment_list for wish %}
                 {% if user.is_authenticated %}
-                {% render_comment_form for wish %}
+                    {% render_comment_form for wish %}
                 {% endif %}
             </div>
             

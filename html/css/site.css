@@ -95,7 +95,6 @@ body {
 
     height: 32px;
     width: 32px;
-    background-image: url(../images/gravatar.png);
     display: inline-block;
     margin-right: 10px;
     float: left;
@@ -250,15 +249,6 @@ body {
 
 }
 
-#comments {
-
-    width: 80%;
-    float: left;
-    margin-top: 35px;
-    margin-left: 15px;
-
-
-}
 
 #sidebar {
 
@@ -681,4 +671,117 @@ color: #f5838a;
     border: 1px solid rgba(255, 0, 0, .9);
     width: 79%;
 	
+}
+
+#comments {
+
+    width: 80%;
+    float: left;
+    margin-top: 35px;
+    margin-left: 15px;
+
+}
+
+#comments .gravatar {
+
+    position: absolute;
+    left: 5px;
+    padding-top: 5px;
+
+}
+
+#comments ul.comment-container {
+
+    margin: 0px;
+    padding: 0px;
+
+}
+
+
+#comments .comment-author {
+
+    color: blue;
+    padding-right: 5px;
+    font-size: 80%;
+
+}
+
+#comments .comment {
+
+    position: relative;
+    padding-left: 50px;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 25px;
+
+
+}
+
+#comments .timeago {
+
+    font-size: 80%;
+    text-decoration: none;
+    color: #888;
+
+}
+
+#comments .comment-message {
+
+    padding-top: 10px;
+    line-height: 20px;
+    font-size: 95%;
+    color: #444;
+
+
+}
+
+#message_container {
+	
+	text-align: center;
+	margin: 0px;
+	display: block;
+	position: fixed;
+	top: 40px;
+	height: 45px;
+	width: 100%;
+	z-index: 999;
+	
+}
+
+#message_container .success {
+	
+	background-color: #DFF0D8;
+	border: 1px solid #D6E9C6;
+	color: #468847;
+	height: 40px;
+	line-height: 40px;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+#message_container .error {
+	
+	background-color: #F2DEDE;
+	border: 1px solid #EED3D7;
+	color: #B94A48;
+	height: 40px;
+	line-height: 40px;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+#message_container .dismiss {
+
+	position: absolute;
+	left: 64%;
+
+}
+
+#message_container a {
+	
+	text-decoration: none;
+	color: inherit !important;
 }

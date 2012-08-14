@@ -1,6 +1,32 @@
 // document ready functions here
 
 $(document).ready(function() {
+    
+    
+    // comments
+    $('#comment_form form').submit(function(){
+        
+        $.post(
+              '/comments/post/',
+              $('#comment-form').serialize(),
+              function(data) {
+                if (data.indexOf("none") != -1){
+                    var go = $('input[name="next"]').val();
+                    window.location = go;
+                }
+                else{
+                   $('#comment_form').prepend( data );
+                }
+              }     
+        );
+        
+        
+        
+        return false;    
+        
+    });
+    
+    
 
     // hide the id_tags multi select because we are going to use our jQuery tag selector!
     $("#id_tags").hide();
@@ -20,9 +46,8 @@ $(document).ready(function() {
     })
 
 
-
+    // update the the hidden #id_tags multi select element with the dropped tags
     function updateTagsList(){
-
 
         arr = []
 
@@ -33,19 +58,20 @@ $(document).ready(function() {
 
         });
 
-
         $("#id_tags").val(arr);
 
     }
     
+    
+    // setup the li elements in #select-tags-list as draggable
     $("li", "#select-tags-list").draggable({
 
         revert: "invalid",
-        helper: "clone"
-        
+        helper: "clone"   
 
     });
     
+    // setup the #tag-container element as droppable
     $('#tag-container').droppable({
         accept: "li",
         activeClass: "tag-container-hightlight",
@@ -64,6 +90,8 @@ $(document).ready(function() {
 
     });
     
+    // set variable for delete icon and create function for moving tags
+    // from the tag list holding area to the post tag list
     var delete_icon = "<a href='/' class='ui-icon-delete'>x</a>";
     function moveTag( $item ) {
 	$item.fadeOut(function() {
@@ -81,6 +109,7 @@ $(document).ready(function() {
 	});
     }
     
+    // remove a tag by appending it to #select-tags-list
     function deleteTag( $item ) {
 	$item.fadeOut(function() {
 	    var $list = $( "ul", "#select-tags-list" );
@@ -93,6 +122,7 @@ $(document).ready(function() {
 	});
     }
     
+    // sets up the ability to click on the tag to remove it
     $("ul.tags-ul > li").click(function(e){
 
         var list_item = $(this);   
@@ -110,6 +140,15 @@ $(document).ready(function() {
         
         e.preventDefault(); 
 
+    });
+    
+    $(".dismiss").click(function(e){
+        
+        e.preventDefault();
+        $(this).parent().parent().remove();
+        
+        
+        
     });
 
 

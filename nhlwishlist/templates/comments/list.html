@@ -1,8 +1,22 @@
+{% load templatefilters %}
+{% load gravatar %}
 {% load comments %}
 {% get_comment_list for wish as comment_list %}
+<ul class="comment-container">
 {% for comment in comment_list %}
-<p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
-...
-<p>Comment: {{ comment.comment }}</p>
-...
+
+    <li class="comment {% cycle 'even' 'odd' %}">
+        <div class="comment-content">
+            <div class="gravatar">{% gravatar comment.user 32 %}</div>
+            <div class="comment-body">
+            <span class="comment-author">{{ comment.user }}</span>
+            <a href="#" class="timeago">{{ comment.submit_date|timeago }}</a>
+            <div class="comment-message">{{ comment.comment }}</div>
+
+            </div>
+                        
+
+        </div>
+    </li>
 {% endfor %}
+</ul>

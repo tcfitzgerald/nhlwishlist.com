@@ -7,5 +7,8 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=125, blank=True)
     vote_count = models.IntegerField(default=10)
     
+    def __unicode__(self):
+        return self.user.username
+    
     def can_vote(self):
         return self.vote_count > 0
