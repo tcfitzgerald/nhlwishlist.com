@@ -9,7 +9,7 @@ register = template.Library()
 @register.filter
 def timeago(value, arg=None):
     """Formats a date as the time since that date ("2 hours ago")."""
-    from django.utils.timesince import timesince
+    
     if not value:
         return u''
     try:
@@ -37,3 +37,8 @@ def bbcode(value):
     except:
         return value
 bbcode.is_safe = True
+
+@register.filter_function
+def order_by(queryset, args):
+    args = [x.strip() for x in args.split(',')]
+    return queryset.order_by(*args)

@@ -3,6 +3,7 @@
 {% load gravatar %}
 {% load comments %}
 {% get_comment_list for wish as comment_list %}
+
 <ul class="comment-container">
 {% autopaginate comment_list 10 %}
 {% for comment in comment_list %}
