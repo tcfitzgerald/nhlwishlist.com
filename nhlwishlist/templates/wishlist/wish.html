@@ -18,10 +18,10 @@
                     <div class="vote-button-wrapper"><span class="vote-button">{% if user.is_authenticated %}<a href="{% url vote wish.id %}"></a>{% endif %}</span></div>
                     <div class="share">
                     <span>share</span>                       
-                        <img src="/static/images/facebook_24.png" title="Share on Facebook">
-                        <img src="/static/images/twitter_24.png" title="Share on Twitter">
-                        <img src="/static/images/reddit_24.png" title="Share on Reddit">
-                        <img src="/static/images/google-plus_24.png" title="Share on Google+">
+                        <img src="{{ STATIC_URL }}images/facebook_24.png" title="Share on Facebook">
+                        <img src="{{ STATIC_URL }}images/twitter_24.png" title="Share on Twitter">
+                        <img src="{{ STATIC_URL }}images/reddit_24.png" title="Share on Reddit">
+                        <img src="{{ STATIC_URL }}images/google-plus_24.png" title="Share on Google+">
                         
                     </div>
                 </div>

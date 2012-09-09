@@ -27,7 +27,7 @@ body {
 #header {
     background-image: url(../images/header_bg2.png);
     background-repeat: no-repeat;
-    background-position-x: 50%;
+    background-position: 50%;
     display: block;
     height: 467px;
 
@@ -168,6 +168,12 @@ body {
     margin-top: 5px;
 
 
+}
+
+#user-menu a {
+	
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -585,14 +591,14 @@ color: #f5838a;
 
 }
 
-#register-form {
+.base-form {
 
     margin-top: 50px;
     font-size: 95%;
 
 }
 
-#register-form input[type="text"], #register-form input[type="password"] {
+.base-form input[type="text"], .base-form input[type="password"] {
 
     display: inline-block;
     padding: 4px;
@@ -606,13 +612,25 @@ color: #f5838a;
 
 }
 
-#register-form label {
+.base-form label {
 
     float: left;
     margin-left: 10px;
     margin-right: 20px;
     margin-bottom: 10px;
 
+}
+
+.base-form input[type="submit"] {
+	
+    display: inline-block;
+    padding: 4px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    font-size: 115%;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-left: 15px;
 }
 
 #wish-form {

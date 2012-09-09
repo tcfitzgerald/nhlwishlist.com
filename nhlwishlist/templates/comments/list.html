@@ -1,8 +1,10 @@
+{% load pagination_tags %}
 {% load templatefilters %}
 {% load gravatar %}
 {% load comments %}
 {% get_comment_list for wish as comment_list %}
 <ul class="comment-container">
+{% autopaginate comment_list 10 %}
 {% for comment in comment_list %}
 
     <li class="comment {% cycle 'even' 'odd' %}">
@@ -20,3 +22,4 @@
     </li>
 {% endfor %}
 </ul>
+{% paginate %}

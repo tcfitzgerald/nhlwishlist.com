@@ -1,2 +1,4 @@
 {% load comments %}
-{{ form.errors }}
+{% if form.errors %}
+  <p>You must enter a comment.</p>
+{% endif %}

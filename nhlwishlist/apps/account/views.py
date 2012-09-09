@@ -11,6 +11,7 @@ from nhlwishlist.apps.account.forms import LoginForm, RegisterForm
 
 
 def register_user(request):
+    """ Registers a user, creates an associated Profile. """
     
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -39,6 +40,7 @@ def register_user(request):
     
     
 def user_login(request):
+    """ Logs a user in. """
     
     next = request.GET.get('next')
     if next == None:
@@ -71,6 +73,7 @@ def user_login(request):
     return render(request, 'account/login.html', {'form': form, 'next': next})
     
 def user_logout(request):
+    """ Logs a user out. """
     
     logout(request)
     

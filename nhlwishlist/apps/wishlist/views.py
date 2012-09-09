@@ -11,6 +11,7 @@ from nhlwishlist.apps.wishlist.models import Wish, WishTag, WishVote
 from nhlwishlist.apps.wishlist.forms import WishForm
 
 def index(request):
+    """ Old default index view """
     
     q = request.GET.get('q', None)
     
@@ -24,12 +25,19 @@ def index(request):
     
     
 def summary(request, wish_id):
+    """ Show a wish
+    
+    The default view for showing an individual wish item
+    
+    """
+    
     wish = Wish.objects.get(pk=wish_id)
     
     return render(request, 'wishlist/wish.html', {'wish': wish})
     
     
 def tags(request, name):
+    """ Show wishes by related tags """
     
     tag = get_object_or_404(WishTag, name=name)
     
@@ -39,6 +47,13 @@ def tags(request, name):
 
 @login_required    
 def submit_wish(request):
+    """ Submit a wish
+    
+    Submit a wish to the site.  @login_required decorator forces login before
+    a user can visit this view.
+    
+    """
+    
     
     if request.method == "POST":
         form = WishForm(request.POST)
@@ -65,6 +80,11 @@ def submit_wish(request):
     
 @login_required
 def vote(request, wish_id):
+    """ Vote for a wish
+    
+    Increases the vote count for a wish.
+    
+    """
     
     wish = get_object_or_404(Wish, pk=wish_id)
     

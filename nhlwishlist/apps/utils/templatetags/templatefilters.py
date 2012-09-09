@@ -8,7 +8,7 @@ register = template.Library()
 
 @register.filter
 def timeago(value, arg=None):
-    """Formats a date as the time since that date (i.e. "4 days, 6 hours")."""
+    """Formats a date as the time since that date ("2 hours ago")."""
     from django.utils.timesince import timesince
     if not value:
         return u''
@@ -26,6 +26,12 @@ timeago.is_safe = False
 
 @register.filter
 def bbcode(value):
+    """BBcode template filter
+    
+    Runs the passed text through the bbcode parser
+        
+    """
+    
     try:
         return mark_safe(render_bbcode(value))
     except:

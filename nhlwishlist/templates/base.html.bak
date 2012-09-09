@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <title>NHL Wishlist - Coming Soon!</title>
-<link href="/static/css/comingsoon.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="{{ STATIC_URL }}css/comingsoon.css" rel="stylesheet" type="text/css" media="screen" />
 <script type="text/javascript">
 
  var _gaq = _gaq || [];
@@ -27,7 +27,7 @@
     {% endblock %}
     
 <div id="footer">
-<span id="ontheweb">Follow Us: <a href="http://twitter.com/nhlwishlist" target="_blank"><img src="/static/images/twitter_1.png" width="32" height="32" alt="twitter" longdesc="http://twitter.com/nhlwishlist" title="http://twitter.com/nhlwishlist"/></a></span>
+<span id="ontheweb">Follow Us: <a href="http://twitter.com/nhlwishlist" target="_blank"><img src="{{ STATIC_URL }}images/twitter_1.png" width="32" height="32" alt="twitter" longdesc="http://twitter.com/nhlwishlist" title="http://twitter.com/nhlwishlist"/></a></span>
 </div>
 </div>
 </body>

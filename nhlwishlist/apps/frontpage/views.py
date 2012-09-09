@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from nhlwishlist.apps.wishlist.models import Wish
 
 def index(request):
+    """ Default index view  """
     
     q = request.GET.get('q', None)
     
