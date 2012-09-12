@@ -3,6 +3,7 @@ from django.utils.timesince import timesince
 from datetime import datetime
 from postmarkup import render_bbcode
 from django.utils.safestring import mark_safe
+from django.contrib.comments.models import Comment
 
 register = template.Library()
 
@@ -38,7 +39,7 @@ def bbcode(value):
         return value
 bbcode.is_safe = True
 
-@register.filter_function
-def order_by(queryset, args):
-    args = [x.strip() for x in args.split(',')]
-    return queryset.order_by(*args)
+@register.inclusion_tag('comments/recent_comments.html')
+def recent_comments(request):
+    comments = Comment.objects.filter(is_public=True,is_removed=False).order_by('-submit_date')[:5]
+    return {'comments': comments}

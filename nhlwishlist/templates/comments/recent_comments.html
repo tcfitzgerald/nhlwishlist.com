@@ -1,23 +1,18 @@
-{% load pagination_tags %}
-{% load templatefilters %}
 {% load gravatar %}
+{% load templatefilters %}
 {% load comments %}
-{% get_comment_list for wish as comment_list %}
-
 <ul class="comment-container">
-{% autopaginate comment_list 10 %}
-{% for comment in comment_list %}
-    <a name="{{ comment.id }}"></a>
+
+{% for comment in comments %}
+
     <li class="comment {% cycle 'even' 'odd' %}">
-        
         <div class="comment-content" >
             <div class="gravatar">{% gravatar comment.user 32 %}</div>
             <div class="comment-body">
             <span class="comment-author">{{ comment.user }}</span>
             <a href="{% url wish_summary comment.object_pk %}?comment#{{ comment.id }}" class="timeago">{{ comment.submit_date|timeago }}</a>
-            
             <div class="comment-message">{{ comment.comment }}</div>
-            
+
             </div>
                         
 
@@ -25,4 +20,3 @@
     </li>
 {% endfor %}
 </ul>
-{% paginate %}

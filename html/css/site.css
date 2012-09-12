@@ -752,6 +752,65 @@ color: #f5838a;
 
 }
 
+
+#recent-comments {
+
+  
+
+}
+
+#recent-comments .gravatar {
+
+    position: absolute;
+    left: 5px;
+    padding-top: 5px;
+
+}
+
+#recent-comments ul.comment-container {
+
+    margin: 0px;
+    padding: 0px;
+
+}
+
+
+#recent-comments .comment-author {
+
+    color: blue;
+    padding-right: 5px;
+    font-size: 80%;
+
+}
+
+#recent-comments .comment {
+
+    position: relative;
+    padding-left: 50px;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 25px;
+
+
+}
+
+#recent-comments .timeago {
+
+    font-size: 80%;
+    text-decoration: none;
+    color: #888;
+
+}
+
+#recent-comments .comment-message {
+
+    padding-top: 10px;
+    line-height: 20px;
+    font-size: 95%;
+    color: #444;
+
+
+}
+
 #message_container {
 	
 	text-align: center;
