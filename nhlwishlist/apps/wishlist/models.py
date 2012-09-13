@@ -15,7 +15,7 @@ class WishTag(models.Model):
     
     
 class Wish(models.Model):
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, related_name="wishes")
     subject = models.CharField(max_length=140)
     #subject_slug = models.SlugField(max_length=45)
     wish = models.TextField()
@@ -38,7 +38,7 @@ class Wish(models.Model):
     
 class WishVote(models.Model):
     wish = models.ForeignKey(Wish)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name="votes")
     date_added = models.DateTimeField(default=datetime.now())
     
     def __unicode__(self):

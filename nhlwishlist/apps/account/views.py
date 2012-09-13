@@ -29,6 +29,8 @@ def register_user(request):
                 user = User.objects.create_user(form.cleaned_data['username'],form.cleaned_data['email_address'], form.cleaned_data['password'])
                 profile = UserProfile(user=user)
                 profile.save()
+
+                profile.generate_invite()
                 
                 return redirect('home')
                 
@@ -43,7 +45,7 @@ def user_login(request):
     """ Logs a user in. """
     
     next = request.GET.get('next')
-    if next == None:
+    if next is None:
         next = 'home'
 
     if request.method == "POST":
