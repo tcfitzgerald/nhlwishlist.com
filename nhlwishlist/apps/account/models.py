@@ -1,6 +1,7 @@
 from hashlib import sha256
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class UserProfile(models.Model):
@@ -21,6 +22,7 @@ class UserProfile(models.Model):
         return self.save()
 
     def generate_invite(self):
-        invite = sha256(self.user.date_joined + self.user.username).hexdigest()
+        secret = settings.INVITE_SECRET
+        invite = sha256(self.user.date_joined + self.user.username + secret).hexdigest()
         self.invitation_code = invite
         self.save()
