@@ -13,15 +13,26 @@ class UserProfile(models.Model):
     
     def __unicode__(self):
         return self.user.username
-    
+
     def can_vote(self):
+        """
+        Check to determine if a user can vote.  They must have at
+        least 1 vote.
+        """
         return self.vote_count > 0
     
     def add_votes(self, votes):
+        """
+        Method for increasing vote count.  Mostly for cron jobs.
+        """
         self.vote_count += votes
         return self.save()
 
     def generate_invite(self):
+        """
+        Generates invite code.  An invite code allows users to increase
+        their vote count for each invitee who registers with the user's code.
+        """
         secret = settings.INVITE_SECRET
         invite = sha256(self.user.date_joined + self.user.username + secret).hexdigest()
         self.invitation_code = invite
